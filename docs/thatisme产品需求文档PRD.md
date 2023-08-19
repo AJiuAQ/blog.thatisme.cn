@@ -39,7 +39,7 @@
 
 + 博客
   在本系统中，即为网站整体，包括系作者、读者的可交互网站。
-+ 作者
++ 作者/管理员
   在系统中进行文章编辑、发表的角色。
 + 读者
   在系统中浏览、评论文章的角色。
@@ -68,12 +68,12 @@
 mindmap
   root((---用户---))
     浏览文章，反馈意见
-    ((游···客))
+    游客((---游客---))
       注册
-    ((注册用户))
-      ((读···者))
+    注册用户((注册用户))
+      读者((---读者---))
         浏览文章
-      ((作···者))
+      作者((---作者---))
         编辑，发布，归档文章，文章管理，标签管理
         系统基本设置，用户管理，日志查看
 ```
@@ -105,12 +105,12 @@ flowchart TB
   进入网站 --> 登录flow
   subgraph 登录flow
       已有账号 --> 正常 --> 进行登录
-      没有账号 --> 注册账号 --> 验证账号flow --> 正常
+      没有账号 --> 注册账号 --> 验证账号flow --> 已有账号
       已有账号 --> 忘记密码 --> 修改密码 --> 验证账号flow
   end
   subgraph 验证账号flow
     验证账号 --> 验证失败 --> 验证账号
-    验证账号 --> 验证成功 --> 输入新密码 --> 正常
+    验证账号 --> 验证成功 --> 输入新密码
   end
 ```
 #### 文章状态
@@ -136,7 +136,30 @@ stateDiagram-v2
   禁用 --> 正常
   正常 --> [*]
 ```
-### 时序图
+### c4 model
+```mermaid
+C4Context
+    title 博客系统
+    System_Boundary(blog, "博客系统") {
+        Person(ordinaryUser, "普通用户", "普通用户")
+        Person(autorUser, "作者", "文章发表、管理")
+        System(userSystem, "用户系统", "用户管理")
+        System(blogSystem, "文章系统", "文章管理")
+    }
+    Boundary(db, "数据") {
+      SystemDb(mysql, "mysql", "数据写入使用")
+      SystemDb(es, "elastic search", "数据读取使用")
+    }
+    Rel(mysql, es, "数据同步", "bindlog")
+    Rel(autorUser, userSystem, "管理用户", "")
+    Rel(autorUser, blogSystem, "管理文章", "")
+    Rel(ordinaryUser, blogSystem, "阅读文章", "")
+    Rel(userSystem, mysql, "写入", "")
+    Rel(userSystem, es, "查询", "")
+    Rel(blogSystem, mysql, "写入", "")
+    Rel(blogSystem, es, "查询", "")
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+```
 
 ## 思维导图
 
