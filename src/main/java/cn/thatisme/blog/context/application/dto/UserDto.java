@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.time.LocalDate;
 
 /**
  * <p>user dto</p>
@@ -30,4 +30,10 @@ public class UserDto implements Serializable {
      * email
      */
     private String email;
+
+    private LocalDate loginTime;
+
+    private LocalDate createTime;
+
+    private LocalDate updateTime;
 }

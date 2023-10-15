@@ -15,15 +15,17 @@ public class Comment implements Entity<Comment> {
 
     private ID id;
 
+    private CommentContent content;
+
     private ID user;
 
     private ID article;
 
     private IPAddress ip;
 
-    private CommentContent content;
+    private boolean status = true;
 
     private Date createTime;
 
-    private boolean status = true;
+    private Date updatedTime;
 }

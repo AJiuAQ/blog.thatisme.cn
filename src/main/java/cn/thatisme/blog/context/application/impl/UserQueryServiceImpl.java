@@ -22,7 +22,6 @@ public class UserQueryServiceImpl implements UserQueryService {
 
     public UserDto get(Long id) {
         User user = userRepository.get(new ID(id));
-        UserDto dto = conversionService.convert(user, UserDto.class);
-        return dto;
+        return conversionService.convert(user, UserDto.class);
     }
 }

@@ -24,13 +24,16 @@ public record Token(String token, Date expireTime, int expirePeriod) implements 
         this(token, expireTime, 0);
     }
 
+    /**
+     * 创建一个token
+     * @param tokenStr
+     * @return token
+     */
     public static Token create(String tokenStr) {
         //12小时后过期
         int expirePeriod = 3600 * 12;
-        //当前时间
-        Date now = new Date();
         //过期时间
-        Date expireTime = new Date(now.getTime() + TOKEN_EXPIRE_PERIOD);
+        Date expireTime = new Date(new Date().getTime() + TOKEN_EXPIRE_PERIOD);
         return new Token(tokenStr,expireTime, expirePeriod);
     }
 

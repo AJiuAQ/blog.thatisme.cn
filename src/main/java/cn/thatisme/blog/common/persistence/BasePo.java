@@ -1,42 +1,28 @@
 package cn.thatisme.blog.common.persistence;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * <p></p>
  * @author wujinhang 2023/8/4
  */
 @MappedSuperclass
-public class BasePo {
+@Getter
+@Setter
+public class BasePo implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SnowflakeGenerator")
+    @GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)
+    @Comment("id")
     private Long id;
-
-    /**
-     * 创建人
-     */
-    @Column
-    private String createdBy;
-
-    /**
-     * 创建时间
-     */
-    @Column
-    private Date createdTime;
-
-    /**
-     * 更新人
-     */
-    @Column
-    private String updatedBy;
-
-    /**
-     * 更新时间
-     */
-    @Column
-    private Date updatedTime;
 }

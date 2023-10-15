@@ -8,6 +8,10 @@ import cn.thatisme.blog.common.domain.ValueObject;
  */
 public record Account(Username username, Email email, Password password, Token token) implements ValueObject<Account> {
 
+    public Account(Username username, Email email) {
+        this(username, email, null, null);
+    }
+
     public boolean checkPassword(String passwordStr) {
         return this.password.sameValueAs(Password.create(passwordStr, password.salt()));
     }

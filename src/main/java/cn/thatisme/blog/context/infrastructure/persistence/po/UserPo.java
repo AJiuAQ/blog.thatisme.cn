@@ -1,14 +1,15 @@
 package cn.thatisme.blog.context.infrastructure.persistence.po;
 
+import cn.thatisme.blog.common.persistence.BasePo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Comment;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * <p></p>
@@ -19,44 +20,34 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "user")
-public class UserPo {
+@Comment("用户表")
+public class UserPo extends BasePo {
 
-    @Column
+    @Column(length = 32, nullable = false, unique = true)
+    @Comment("用户名")
     private String username;
 
-    @Column
+    @Column(length = 320, nullable = false, unique = true)
+    @Comment("邮箱")
     private String email;
 
-    @Column
+    @Column(nullable = false)
+    @Comment("是否管理员， 0-否 | 1-是")
+    private Boolean admin = false;
+
+    @Column(nullable = false)
+    @Comment("密码")
     private String password;
 
     @Column
-    private Date loginTime;
+    @Comment("登陆时间")
+    private LocalDate loginTime;
 
-    @Id
-    private Long id;
-
-    /**
-     * 创建人
-     */
     @Column
-    private String createdBy;
+    @Comment("创建时间")
+    private LocalDate createTime;
 
-    /**
-     * 创建时间
-     */
     @Column
-    private Date createdTime;
-
-    /**
-     * 更新人
-     */
-    @Column
-    private String updatedBy;
-
-    /**
-     * 更新时间
-     */
-    @Column
-    private Date updatedTime;
+    @Comment("更新时间")
+    private LocalDate updateTime;
 }

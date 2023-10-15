@@ -14,7 +14,7 @@ import org.springframework.core.convert.converter.Converter;
 public interface UserDtoAssembler extends Converter<User, UserDto> {
 
     @Mapping(target = "id", source = "id.id")
-    @Mapping(target = "username", source = "username.username")
-    @Mapping(target = "email", source = "email.email")
+    @Mapping(target = "username", source = "account.username.username")
+    @Mapping(target = "email", source = "account.email.email")
     UserDto convert(User user);
 }
