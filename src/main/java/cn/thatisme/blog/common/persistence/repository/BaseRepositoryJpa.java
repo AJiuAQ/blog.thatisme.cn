@@ -39,9 +39,9 @@ public interface BaseRepositoryJpa<P, E extends Entity<E>> extends BaseRepositor
     }
 
     @Override
-    default Page<E> page() {
-        Page<P> page = findAll(Pageable.unpaged());
-        return page.map(e -> ConversionServiceUtils.convert(e, downstreamType()));
+    default Page<E> page(Pageable page) {
+        Page<P> result = findAll(page);
+        return result.map(e -> ConversionServiceUtils.convert(e, downstreamType()));
     }
 
     @Override

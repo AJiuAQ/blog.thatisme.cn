@@ -23,6 +23,6 @@ public class ConversionServiceUtils {
     public static <Source, Target> List<Target> convertBatch(@Nullable Spliterator<Source> source, Class<Target> targetType) {
         assert conversionService != null;
         assert source != null;
-        return StreamSupport.stream(source, false).map(e -> conversionService.convert(source, targetType)).collect(Collectors.toList());
+        return StreamSupport.stream(source, false).map(e -> conversionService.convert(e, targetType)).collect(Collectors.toList());
     }
 }

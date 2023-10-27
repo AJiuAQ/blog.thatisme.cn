@@ -26,8 +26,8 @@ class UserDtoAssemblerTest {
         UserDto dto = userDtoAssembler.convert(mockUser);
         Assertions.assertNotNull(dto);
         Assertions.assertTrue(dto.getId().equals(mockUser.getId().id())
-                && dto.getUsername().equals(mockUser.getUsername().username())
-                && dto.getEmail().equals(mockUser.getEmail().email())
+                && dto.getUsername().equals(mockUser.getAccount().username().username())
+                && dto.getEmail().equals(mockUser.getAccount().email().email())
         );
     }
 }

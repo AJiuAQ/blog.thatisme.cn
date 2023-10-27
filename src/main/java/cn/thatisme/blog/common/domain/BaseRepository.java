@@ -1,6 +1,7 @@
 package cn.thatisme.blog.common.domain;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface BaseRepository<E extends Entity<E>> {
 
     E get(ID id);
 
-    Page<E> page();
+    Page<E> page(Pageable page);
 
     E store(E entity);
 

@@ -1,0 +1,18 @@
+###
+GRAPHQL http://localhost:8080/graphql
+
+query user($page: Int, $size: Int) {
+    userList(page: {page: $page, size: $size}) {
+        username
+
+        id
+        updateTime
+        __typename
+    }
+}
+
+{
+  "page": 1,
+  "size": 10
+}
+###

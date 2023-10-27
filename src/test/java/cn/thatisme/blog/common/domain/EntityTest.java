@@ -1,7 +1,6 @@
 package cn.thatisme.blog.common.domain;
 
 import cn.thatisme.blog.context.domain.user.User;
-import cn.thatisme.blog.context.domain.user.Username;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,10 +22,8 @@ class EntityTest {
     void sameIdentityAs() {
         User user1 = new User();
         user1.setId(new ID(1L));
-        user1.setUsername(new Username("zhang san"));
         User user2 = new User();
         user2.setId(new ID(1L));
-        user2.setUsername(new Username("li si"));
         assertTrue(user1.sameIdentityAs(user2));
         assertFalse(user1.sameIdentityAs(null));
         System.out.println(user1);

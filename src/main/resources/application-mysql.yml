@@ -1,16 +1,4 @@
-server:
-  port: 8088
-
 spring:
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-    open-in-view: false
   datasource:
     driver-class-name: org.digitalforge.log4jdbc.LoggingDriver
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/blog_test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true

@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "user")
+@Table(name = "user1")
 @Comment("用户表")
 public class UserPo extends BasePo {
 
