@@ -2,7 +2,7 @@
 GRAPHQL http://localhost:8080/graphql
 
 query user($page: Int, $size: Int) {
-    userList(page: {page: $page, size: $size}) {
+    userList(page: $page, size: $size, sort: {orders:[{direction: ASC, property: "username"}]}) {
         username
 
         id
