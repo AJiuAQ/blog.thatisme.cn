@@ -1,7 +1,8 @@
 package cn.thatisme.blog;
 
-import org.springframework.boot.SpringApplication;
+import cn.thatisme.blog.common.utils.EnvFileUtils;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * <p>启动类</p>
@@ -10,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BlogApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BlogApplication.class, args);
+        SpringApplicationBuilder applicationBuilder = new SpringApplicationBuilder(BlogApplication.class);
+        applicationBuilder.properties(EnvFileUtils.getProperties());
+        applicationBuilder.run(args);
     }
 }
