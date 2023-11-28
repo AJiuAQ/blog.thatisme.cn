@@ -31,6 +31,8 @@ public class UserDto implements Serializable {
      */
     private String email;
 
+    private Boolean admin;
+
     private LocalDate loginTime;
 
     private LocalDate createTime;

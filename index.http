@@ -2,17 +2,23 @@
 GRAPHQL http://localhost:8080/graphql
 
 query user($page: Int, $size: Int) {
-    userList(page: $page, size: $size, sort: {orders:[{direction: ASC, property: "username"}]}) {
-        username
-
-        id
-        updateTime
+    userPage(pageInfo: {page: $page, size: $size, sort: ["username"]}) {
+        content {
+            id,
+            username,
+            email,
+            admin,
+            loginTime,
+            createTime,
+            updateTime
+        }
+        totalElement,
         __typename
     }
 }
 
 {
-  "page": 0,
+  "page": 1,
   "size": 10
 }
 ###

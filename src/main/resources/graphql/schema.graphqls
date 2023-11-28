@@ -2,20 +2,19 @@ scalar Date
 
 type Query {
     userById(id : ID!) : User
-    userList(page : Int, size: Int, sort: Sort) : [User!]!
+    userList : [User!]!
+    userPage(pageInfo : PageInfo) : PageResult!
 }
 
-input Sort {
-    orders: [Order!]
+input PageInfo {
+    page: Int,
+    size: Int,
+    sort: [String!]
 }
 
-input Order {
-    direction: Direction,
-    property: String
-}
-
-enum Direction {
-    ASC, DESC
+type PageResult {
+    content: [User!],
+    totalElement: Int
 }
 
 type User {

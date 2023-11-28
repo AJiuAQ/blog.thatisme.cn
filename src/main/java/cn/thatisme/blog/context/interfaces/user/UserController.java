@@ -1,11 +1,11 @@
 package cn.thatisme.blog.context.interfaces.user;
 
+import cn.thatisme.blog.common.graphql.pageable.PageInfo;
+import cn.thatisme.blog.common.graphql.pageable.PageResult;
 import cn.thatisme.blog.context.application.UserQueryService;
 import cn.thatisme.blog.context.application.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,10 @@ public class UserController {
     }
 
     @QueryMapping
-    public Page<UserDto> userList(@Argument UserDto userDto, @Argument int page, @Argument int size, Sort sort) {
-        return userQueryService.page(userDto, PageRequest.of(page, size, sort));
+    public PageResult<UserDto> userPage(@Argument UserDto userDto, @Argument PageInfo pageInfo) {
+        Page<UserDto> page = userQueryService.page(userDto, pageInfo);
+        PageResult<UserDto> result = new PageResult<>(page.getContent(), page.getTotalElements());
+        return result;
     }
 
 }

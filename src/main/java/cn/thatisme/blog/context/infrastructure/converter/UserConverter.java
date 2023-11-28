@@ -14,5 +14,6 @@ public interface UserConverter extends Converter<User, UserPo> {
     @Mapping(source = "account.username.username", target = "username")
     @Mapping(source = "account.email.email", target = "email")
     @Mapping(source = "account.password.password", target = "password")
+    @Mapping(source = "admin", target = "admin")
     UserPo convert(@Nonnull User user);
 }
