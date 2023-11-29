@@ -1,56 +1,14 @@
-scalar Date
-
-type Query {
-    userById(id : ID!) : User
-    userList : [User!]!
-    userPage(pageInfo : PageInfo) : PageResult!
-}
+type Query {}
 
 input PageInfo {
-    page: Int,
-    size: Int,
-    sort: [String!]
+    page: Int! = 1,
+    size: Int! = 10,
+    sort: [String!] = ["id"]
 }
+
+union SearchContent = User
 
 type PageResult {
-    content: [User!],
+    content: [SearchContent!],
     totalElement: Int
-}
-
-type User {
-    id : ID!
-    username : String!
-    email: String!
-    admin : Boolean!
-    loginTime : Date
-    createTime : Date
-    updateTime : Date
-}
-
-type Article {
-    id : ID!
-    title : String!
-    content: String
-    auditor : ID!
-    labels : [Label]!
-    topping : Boolean!
-    status : Boolean!
-    createTime : Date!
-    updateTime : Date
-}
-
-type Comment {
-    id : ID!
-    content: String!
-    user : ID!
-    article : ID!
-    ip : String
-    status : Boolean!
-    createTime : Date!
-    updateTime : Date
-}
-
-type Label {
-    id : ID!
-    name: String!
 }

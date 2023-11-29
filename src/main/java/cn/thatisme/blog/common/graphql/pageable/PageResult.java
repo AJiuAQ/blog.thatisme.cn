@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Getter
 @RequiredArgsConstructor
-public class PageResult<T> {
+public class PageResult<T extends SearchContent> {
     private final List<T> content;
     private final long totalElement;
 

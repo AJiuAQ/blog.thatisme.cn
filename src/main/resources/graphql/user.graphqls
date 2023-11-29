@@ -1,0 +1,22 @@
+type User {
+	id : ID!
+	username : String!
+	email: String!
+	admin : Boolean!
+	loginTime : Date
+	createTime : Date
+	updateTime : Date
+}
+
+input UserQuery {
+	username : String
+	email: String
+	admin : Boolean
+	pageInfo: PageInfo
+}
+
+extend type Query {
+	userById(id : ID!) : User
+	userList : [User!]!
+	userPage(query: UserQuery) : PageResult!
+}

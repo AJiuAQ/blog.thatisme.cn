@@ -1,0 +1,27 @@
+type Article {
+	id : ID!
+	title : String!
+	content: String
+	auditor : ID!
+	labels : [Label]!
+	topping : Boolean!
+	status : Boolean!
+	createTime : Date!
+	updateTime : Date
+}
+
+type Comment {
+	id : ID!
+	content: String!
+	user : ID!
+	article : ID!
+	ip : String
+	status : Boolean!
+	createTime : Date!
+	updateTime : Date
+}
+
+type Label {
+	id : ID!
+	name: String!
+}

@@ -1,5 +1,6 @@
 package cn.thatisme.blog.context.application.dto;
 
+import cn.thatisme.blog.common.graphql.pageable.SearchContent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto implements Serializable {
+public class UserDto extends SearchContent implements Serializable {
 
     /**
      * id
