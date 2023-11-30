@@ -33,6 +33,11 @@ dependencies {
 
 }
 
+compileJava {
+    options.compilerArgs << '-parameters'
+    options.compilerArgs << '-Amapstruct.unmappedTargetPolicy=IGNORE'
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }

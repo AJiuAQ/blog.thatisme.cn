@@ -11,7 +11,13 @@ import cn.thatisme.blog.common.domain.ValueObject;
 public record Password(String password, String salt) implements ValueObject<Password> {
 
     public Password {
-        //Assert.notBlank(password, "密码不能为空");
+    }
+
+    public static Password create(Password password) {
+        if (password == null) {
+            password = Password.create("123456");
+        }
+        return password;
     }
 
     public static Password create(String passwordStr) {

@@ -1,4 +1,5 @@
 type Query {}
+type Mutation {}
 
 input PageInfo {
     page: Int! = 1,
@@ -12,3 +13,4 @@ type PageResult {
     content: [SearchContent!],
     totalElement: Int
 }
+

@@ -9,11 +9,7 @@ import java.io.Serializable;
  * @author wujinhang me@thatisme.cn 2023/11/29
  */
 @Data
-public class Query implements Serializable {
+public class PageQuery implements Serializable {
 
-    public PageInfo pageInfo;
-
-    public Query(PageInfo pageInfo) {
-        this.pageInfo = pageInfo;
-    }
+    private PageInfo pageInfo;
 }

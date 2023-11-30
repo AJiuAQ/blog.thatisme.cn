@@ -1,8 +1,8 @@
-###
+### a
 GRAPHQL http://localhost:8080/graphql
 
 query user {
-    userPage(query: {pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
+    userPage(query: {username: "", pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
         content {
             ... on User {
                 id,
@@ -17,10 +17,36 @@ query user {
         totalElement,
         __typename
     }
+    userById(id: 1) {
+        id,
+        username,
+        email,
+        admin,
+        loginTime,
+        createTime,
+        updateTime
+    }
 }
 
 {
   "page": 1,
   "size": 10
 }
+
 ###
+GRAPHQL http://localhost:8080/graphql
+
+mutation user {
+    userSave(command: {username: "lisi", email: "lisi@q.cn"}) {
+    id
+    }
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation user {
+    userUpdate(command: {id: 1730153406822633472, username: "lisi", email: "lisi@qq.cn"}) {
+    id,username,email
+    }
+}

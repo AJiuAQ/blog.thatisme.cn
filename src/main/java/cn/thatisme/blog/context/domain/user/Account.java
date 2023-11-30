@@ -12,6 +12,13 @@ public record Account(Username username, Email email, Password password, Token t
         this(username, email, null, null);
     }
 
+    public Account(Username username, Email email, Password password, Token token) {
+        this.username = username;
+        this.email = email;
+        this.password = Password.create(password);
+        this.token = token;
+    }
+
     public boolean checkPassword(String passwordStr) {
         return this.password.sameValueAs(Password.create(passwordStr, password.salt()));
     }

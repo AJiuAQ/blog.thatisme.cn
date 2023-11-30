@@ -19,6 +19,7 @@ import static java.lang.String.format;
  * <p></p>
  * @author wujinhang 2023/10/13
  */
+
 public class DateCoercing implements Coercing<LocalDate, String> {
 
     private static DateTimeFormatter createIsoDateFormat() {

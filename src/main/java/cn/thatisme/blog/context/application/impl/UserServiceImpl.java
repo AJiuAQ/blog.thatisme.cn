@@ -2,7 +2,8 @@ package cn.thatisme.blog.context.application.impl;
 
 import cn.thatisme.blog.common.domain.ID;
 import cn.thatisme.blog.common.utils.ConversionServiceUtils;
-import cn.thatisme.blog.context.application.UserQueryService;
+import cn.thatisme.blog.context.application.UserService;
+import cn.thatisme.blog.context.application.command.UserCommand;
 import cn.thatisme.blog.context.application.dto.UserDto;
 import cn.thatisme.blog.context.application.query.UserQuery;
 import cn.thatisme.blog.context.domain.user.User;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class UserQueryServiceImpl implements UserQueryService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final ConversionService conversionService;
@@ -30,8 +31,14 @@ public class UserQueryServiceImpl implements UserQueryService {
 
     @Override
     public Page<UserDto> page(UserQuery query) {
-        Page<User> userPage = userRepository.page(query.getPageInfo());
+        Page<User> userPage = userRepository.page(query);
         Page<UserDto> userDtos = userPage.map(e -> ConversionServiceUtils.convert(e, UserDto.class));
         return userDtos;
+    }
+
+    @Override
+    public UserDto store(UserCommand command) {
+        User store = userRepository.store(ConversionServiceUtils.convert(command, User.class));
+        return ConversionServiceUtils.convert(store, UserDto.class);
     }
 }

@@ -1,6 +1,5 @@
 package cn.thatisme.blog.config.graphql;
 
-import cn.thatisme.blog.context.application.dto.UserDto;
 import graphql.schema.GraphQLScalarType;
 import graphql.schema.idl.RuntimeWiring;
 import org.springframework.context.annotation.Bean;
@@ -19,16 +18,14 @@ public class BlogRuntimeWiringConfigurer {
         return builder -> {
             addPersonTypeResolver(builder);
             addDateCoercing(builder);
+            addDateTimeCoercing(builder);
         };
     }
 
     private void addPersonTypeResolver(RuntimeWiring.Builder builder) {
         builder.type("SearchContent", typeBuilder -> typeBuilder.typeResolver(env -> {
             Object javaObject = env.getObject();
-            if (javaObject instanceof UserDto) {
-                return env.getSchema().getObjectType("User");
-            }
-            return env.getSchema().getObjectType("0");
+            return env.getSchema().getObjectType(GraphqlHelper.getTypeMap().get(javaObject.getClass()));
         }));
     }
 
@@ -37,6 +34,14 @@ public class BlogRuntimeWiringConfigurer {
                 .name("Date")
                 .description("A Type representing a date (without time, only a day)")
                 .coercing(new DateCoercing())
+                .build());
+    }
+
+    private void addDateTimeCoercing(RuntimeWiring.Builder builder) {
+        builder.scalar(GraphQLScalarType.newScalar()
+                .name("DateTime")
+                .description("A Type representing a date (without time, only a day)")
+                .coercing(new DateTimeCoercing())
                 .build());
     }
 }

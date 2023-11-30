@@ -1,20 +1,18 @@
 package cn.thatisme.blog.context.application.dto;
 
 import cn.thatisme.blog.common.graphql.pageable.SearchContent;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p>user dto</p>
  * @author wujinhang 2022/4/20
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserDto extends SearchContent implements Serializable {
 
     /**
@@ -34,9 +32,9 @@ public class UserDto extends SearchContent implements Serializable {
 
     private Boolean admin;
 
-    private LocalDate loginTime;
+    private LocalDateTime loginTime;
 
-    private LocalDate createTime;
+    private LocalDateTime createTime;
 
-    private LocalDate updateTime;
+    private LocalDateTime updateTime;
 }

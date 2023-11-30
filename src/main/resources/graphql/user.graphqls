@@ -3,9 +3,9 @@ type User {
 	username : String!
 	email: String!
 	admin : Boolean!
-	loginTime : Date
-	createTime : Date
-	updateTime : Date
+	loginTime : DateTime
+	createTime : DateTime
+	updateTime : DateTime
 }
 
 input UserQuery {
@@ -15,8 +15,18 @@ input UserQuery {
 	pageInfo: PageInfo
 }
 
+input UserMultiple {
+	id : ID
+	username : String
+	email: String
+}
+
 extend type Query {
 	userById(id : ID!) : User
-	userList : [User!]!
 	userPage(query: UserQuery) : PageResult!
+}
+
+extend type Mutation {
+	userSave(command: UserMultiple) : User!
+	userUpdate(command: UserMultiple) : User!
 }

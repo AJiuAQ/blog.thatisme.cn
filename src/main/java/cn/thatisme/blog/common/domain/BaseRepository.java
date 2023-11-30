@@ -1,7 +1,7 @@
 package cn.thatisme.blog.common.domain;
 
+import cn.thatisme.blog.common.graphql.pageable.PageQuery;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface BaseRepository<E extends Entity<E>> {
 
     E get(ID id);
 
-    Page<E> page(Pageable page);
+    Page<E> page(PageQuery pageQuery);
 
     E store(E entity);
 

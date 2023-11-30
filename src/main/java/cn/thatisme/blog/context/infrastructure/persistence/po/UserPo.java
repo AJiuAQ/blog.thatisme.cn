@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Comment;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p></p>
@@ -41,13 +41,13 @@ public class UserPo extends BasePo {
 
     @Column
     @Comment("登陆时间")
-    private LocalDate loginTime;
+    private LocalDateTime loginTime;
 
     @Column
     @Comment("创建时间")
-    private LocalDate createTime;
+    private LocalDateTime createTime;
 
     @Column
     @Comment("更新时间")
-    private LocalDate updateTime;
+    private LocalDateTime updateTime;
 }

@@ -3,10 +3,12 @@ package cn.thatisme.blog.common.persistence.repository;
 import cn.thatisme.blog.common.domain.BaseRepository;
 import cn.thatisme.blog.common.domain.Entity;
 import cn.thatisme.blog.common.domain.ID;
+import cn.thatisme.blog.common.graphql.pageable.PageQuery;
 import cn.thatisme.blog.common.utils.ConversionServiceUtils;
+import cn.thatisme.blog.common.utils.QueryHelper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
  * @author wujinhang 2023/8/18
  */
 @NoRepositoryBean
-public interface BaseRepositoryJpa<P, E extends Entity<E>> extends BaseRepository<E>, JpaRepository<P, Long> {
+public interface BaseRepositoryJpa<P, E extends Entity<E>> extends BaseRepository<E>, JpaRepository<P, Long>, JpaSpecificationExecutor<P> {
 
     /**
      * 上游数据类型，持久化数据--实体模型--dto 转换数据
@@ -39,8 +41,8 @@ public interface BaseRepositoryJpa<P, E extends Entity<E>> extends BaseRepositor
     }
 
     @Override
-    default Page<E> page(Pageable page) {
-        Page<P> result = findAll(page);
+    default Page<E> page(PageQuery pageQuery) {
+        Page<P> result = findAll((root, query, criteriaBuilder) -> QueryHelper.getPredicate(root, pageQuery, criteriaBuilder), pageQuery.getPageInfo());
         return result.map(e -> ConversionServiceUtils.convert(e, downstreamType()));
     }
 

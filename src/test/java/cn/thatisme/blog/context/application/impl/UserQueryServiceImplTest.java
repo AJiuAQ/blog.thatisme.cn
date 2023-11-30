@@ -1,7 +1,7 @@
 package cn.thatisme.blog.context.application.impl;
 
 import cn.thatisme.blog.common.domain.ID;
-import cn.thatisme.blog.context.application.UserQueryService;
+import cn.thatisme.blog.context.application.UserService;
 import cn.thatisme.blog.context.application.dto.UserDto;
 import cn.thatisme.blog.context.domain.user.*;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class UserQueryServiceImplTest {
     private UserRepository userRepository = Mockito.spy(UserRepository.class);
 
     @Autowired
-    private UserQueryService userQueryService;
+    private UserService userQueryService;
 
     @Test
     void get() {

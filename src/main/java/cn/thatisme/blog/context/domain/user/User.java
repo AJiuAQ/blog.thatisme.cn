@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p></p>
@@ -26,11 +26,11 @@ public class User implements Entity<User> {
     @Builder.Default
     private Boolean admin = false;
 
-    private LocalDate loginTime;
+    private LocalDateTime loginTime;
 
-    private LocalDate createTime;
+    private LocalDateTime createTime;
 
-    private LocalDate updateTime;
+    private LocalDateTime updateTime;
 
     public User(ID id, Username username, Email email) {
         this.id = id;
