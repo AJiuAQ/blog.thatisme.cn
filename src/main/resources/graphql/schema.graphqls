@@ -14,3 +14,6 @@ type PageResult {
     totalElement: Int
 }
 
+type DeleteResult {
+    totalElement: Int
+}

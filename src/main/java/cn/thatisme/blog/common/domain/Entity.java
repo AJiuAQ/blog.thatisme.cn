@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 public interface Entity<T> extends Serializable {
 
-    ID getId();
+    Long getId();
 
     /**
      * 与另一个实体是否为相同的实体

@@ -14,7 +14,7 @@ import org.springframework.core.convert.converter.Converter;
 @Mapper(componentModel = "spring")
 public interface UserPoConverter extends Converter<UserPo, User> {
 
-    @Mapping(source = "id", target = "id.id")
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "username", target = "account.username.username")
     @Mapping(source = "email", target = "account.email.email")
     @Mapping(source = "password", target = "account.password.password")

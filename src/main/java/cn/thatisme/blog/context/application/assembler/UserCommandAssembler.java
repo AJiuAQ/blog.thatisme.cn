@@ -13,7 +13,7 @@ import org.springframework.core.convert.converter.Converter;
 @Mapper(componentModel = "spring")
 public interface UserCommandAssembler extends Converter<UserCommand, User> {
 
-    @Mapping(target = "id.id", source = "id")
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "account.username.username", source = "username")
     @Mapping(target = "account.email.email", source = "email")
     User convert(UserCommand user);

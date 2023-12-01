@@ -1,7 +1,6 @@
 package cn.thatisme.blog.context.domain.user;
 
 import cn.thatisme.blog.common.domain.Entity;
-import cn.thatisme.blog.common.domain.ID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 public class User implements Entity<User> {
 
-    private ID id;
+    private Long id;
 
     Account account;
 
@@ -32,7 +31,7 @@ public class User implements Entity<User> {
 
     private LocalDateTime updateTime;
 
-    public User(ID id, Username username, Email email) {
+    public User(Long id, Username username, Email email) {
         this.id = id;
         this.account = new Account(username, email);
     }

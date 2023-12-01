@@ -1,6 +1,5 @@
 package cn.thatisme.blog.context.application.impl;
 
-import cn.thatisme.blog.common.domain.ID;
 import cn.thatisme.blog.context.application.UserService;
 import cn.thatisme.blog.context.application.dto.UserDto;
 import cn.thatisme.blog.context.domain.user.*;
@@ -30,10 +29,10 @@ class UserQueryServiceImplTest {
 
     @Test
     void get() {
-        User mockUser = new User(new ID(1L), new Username("zhangsan"), new Email("a@a.cn"));
-        when(userRepository.get(any(ID.class))).thenReturn(mockUser);
+        User mockUser = new User(new Long(1L), new Username("zhangsan"), new Email("a@a.cn"));
+        when(userRepository.get(any(Long.class))).thenReturn(mockUser);
         UserDto userDto = userQueryService.get(1L);
-        verify(userRepository, times(1)).get(any(ID.class));
+        verify(userRepository, times(1)).get(any(Long.class));
         System.out.println(userDto);
     }
 }

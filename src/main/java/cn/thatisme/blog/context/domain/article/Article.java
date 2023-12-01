@@ -1,7 +1,6 @@
 package cn.thatisme.blog.context.domain.article;
 
 import cn.thatisme.blog.common.domain.Entity;
-import cn.thatisme.blog.common.domain.ID;
 import cn.thatisme.blog.context.domain.label.LabelName;
 import lombok.Data;
 
@@ -15,13 +14,13 @@ import java.util.List;
 @Data
 public class Article implements Entity<Article> {
 
-    private ID id;
+    private Long id;
 
     private Title title;
 
     private ArticleContent content;
 
-    private ID auditor;
+    private Long auditor;
 
     private List<LabelName> labels;
 

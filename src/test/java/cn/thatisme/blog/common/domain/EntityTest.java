@@ -14,16 +14,16 @@ class EntityTest {
     @Test
     void getId() {
         User user1 = new User();
-        user1.setId(new ID(1L));
+        user1.setId(1L);
         System.out.println(user1.getId());
     }
 
     @Test
     void sameIdentityAs() {
         User user1 = new User();
-        user1.setId(new ID(1L));
+        user1.setId(1L);
         User user2 = new User();
-        user2.setId(new ID(1L));
+        user2.setId(1L);
         assertTrue(user1.sameIdentityAs(user2));
         assertFalse(user1.sameIdentityAs(null));
         System.out.println(user1);

@@ -1,7 +1,6 @@
 package cn.thatisme.blog.context.domain.comment;
 
 import cn.thatisme.blog.common.domain.Entity;
-import cn.thatisme.blog.common.domain.ID;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,13 +12,13 @@ import java.util.Date;
 @Data
 public class Comment implements Entity<Comment> {
 
-    private ID id;
+    private Long id;
 
     private CommentContent content;
 
-    private ID user;
+    private Long user;
 
-    private ID article;
+    private Long article;
 
     private IPAddress ip;
 

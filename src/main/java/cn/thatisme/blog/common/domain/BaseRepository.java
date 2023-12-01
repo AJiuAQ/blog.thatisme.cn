@@ -23,7 +23,7 @@ public interface BaseRepository<E extends Entity<E>> {
      */
     Class<E> downstreamType();
 
-    E get(ID id);
+    E get(Long id);
 
     Page<E> page(PageQuery pageQuery);
 
@@ -31,5 +31,5 @@ public interface BaseRepository<E extends Entity<E>> {
 
     List<E> storeBatch(List<E> entity);
 
-    void remove(List<ID> ids);
+    long remove(List<Long> ids);
 }

@@ -1,7 +1,6 @@
 package cn.thatisme.blog.context.domain.label;
 
 import cn.thatisme.blog.common.domain.Entity;
-import cn.thatisme.blog.common.domain.ID;
 import lombok.Data;
 
 /**
@@ -11,7 +10,7 @@ import lombok.Data;
 @Data
 public class Label implements Entity<Label> {
 
-    private ID id;
+    private Long id;
 
     private LabelName name;
 }

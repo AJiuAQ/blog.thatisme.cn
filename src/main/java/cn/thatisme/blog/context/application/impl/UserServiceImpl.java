@@ -1,6 +1,5 @@
 package cn.thatisme.blog.context.application.impl;
 
-import cn.thatisme.blog.common.domain.ID;
 import cn.thatisme.blog.common.utils.ConversionServiceUtils;
 import cn.thatisme.blog.context.application.UserService;
 import cn.thatisme.blog.context.application.command.UserCommand;
@@ -12,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p></p>
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final ConversionService conversionService;
 
     public UserDto get(Long id) {
-        User user = userRepository.get(new ID(id));
+        User user = userRepository.get(id);
         return conversionService.convert(user, UserDto.class);
     }
 
@@ -40,5 +41,10 @@ public class UserServiceImpl implements UserService {
     public UserDto store(UserCommand command) {
         User store = userRepository.store(ConversionServiceUtils.convert(command, User.class));
         return ConversionServiceUtils.convert(store, UserDto.class);
+    }
+
+    @Override
+    public long delete(List<Long> ids) {
+        return userRepository.remove(ids);
     }
 }

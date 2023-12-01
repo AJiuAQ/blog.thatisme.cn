@@ -5,6 +5,8 @@ import cn.thatisme.blog.context.application.dto.UserDto;
 import cn.thatisme.blog.context.application.query.UserQuery;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * <p>用户查询service</p>
  * @author wujinhang 2023/8/15
@@ -16,5 +18,7 @@ public interface UserService {
     Page<UserDto> page(UserQuery query);
 
     UserDto store(UserCommand command);
+
+    long delete(List<Long> ids);
 
 }

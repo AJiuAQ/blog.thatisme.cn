@@ -1,6 +1,5 @@
 package cn.thatisme.blog.context.application.assembler;
 
-import cn.thatisme.blog.common.domain.ID;
 import cn.thatisme.blog.context.application.dto.UserDto;
 import cn.thatisme.blog.context.domain.user.Email;
 import cn.thatisme.blog.context.domain.user.User;
@@ -22,10 +21,10 @@ class UserDtoAssemblerTest {
 
     @Test
     void convert() {
-        User mockUser = new User(new ID(1L), new Username("zhangsan"), new Email("a@a.cn"));
+        User mockUser = new User(1L, new Username("zhangsan"), new Email("a@a.cn"));
         UserDto dto = userDtoAssembler.convert(mockUser);
         Assertions.assertNotNull(dto);
-        Assertions.assertTrue(dto.getId().equals(mockUser.getId().id())
+        Assertions.assertTrue(dto.getId().equals(mockUser.getId())
                 && dto.getUsername().equals(mockUser.getAccount().username().username())
                 && dto.getEmail().equals(mockUser.getAccount().email().email())
         );

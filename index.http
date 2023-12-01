@@ -50,3 +50,12 @@ mutation user {
     id,username,email
     }
 }
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation user {
+    userDelete(ids: [1730153406822633472]) {
+    totalElement
+    }
+}

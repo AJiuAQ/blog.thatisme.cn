@@ -1,4 +1,4 @@
-package cn.thatisme.blog.context.interfaces.user;
+package cn.thatisme.blog.context.interfaces;
 
 import cn.thatisme.blog.common.graphql.pageable.PageResult;
 import cn.thatisme.blog.context.application.UserService;
@@ -11,6 +11,8 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 /**
  * <p></p>
@@ -41,5 +43,10 @@ public class UserController {
     @MutationMapping
     public UserDto userUpdate(@Argument UserCommand command) {
         return userService.store(command);
+    }
+
+    @MutationMapping
+    public long userDelete(@Argument List<Long> ids) {
+        return userService.delete(ids);
     }
 }
