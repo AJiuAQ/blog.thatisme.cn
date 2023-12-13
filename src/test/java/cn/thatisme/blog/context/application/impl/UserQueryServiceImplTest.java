@@ -29,7 +29,7 @@ class UserQueryServiceImplTest {
 
     @Test
     void get() {
-        User mockUser = new User(new Long(1L), new Username("zhangsan"), new Email("a@a.cn"));
+        User mockUser = new User((1L), new Username("zhangsan"), new Email("a@a.cn"));
         when(userRepository.get(any(Long.class))).thenReturn(mockUser);
         UserDto userDto = userQueryService.get(1L);
         verify(userRepository, times(1)).get(any(Long.class));

@@ -3,25 +3,29 @@ type Article {
 	title : String!
 	content: String
 	auditor : ID!
-	labels : [Label]!
+	labels : String!
 	topping : Boolean!
 	status : Boolean!
 	createTime : Date!
 	updateTime : Date
 }
 
-type Comment {
-	id : ID!
-	content: String!
-	user : ID!
-	article : ID!
-	ip : String
-	status : Boolean!
-	createTime : Date!
-	updateTime : Date
+input ArticleQuery {
+	pageInfo: PageInfo
 }
 
-type Label {
-	id : ID!
-	name: String!
+input ArticleMultiple {
+	id : ID
+	title : String
+	content: String
+}
+
+extend type Query {
+	articleById(id : ID!) : Article
+	articlePage(query: ArticleQuery) : PageResult!
+}
+
+extend type Mutation {
+	articleSaveOrUpdate(command: ArticleMultiple) : Article!
+	articleDelete(ids: [ID!]!) : DeleteResult!
 }

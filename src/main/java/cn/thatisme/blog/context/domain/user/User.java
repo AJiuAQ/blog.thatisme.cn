@@ -35,5 +35,4 @@ public class User implements Entity<User> {
         this.id = id;
         this.account = new Account(username, email);
     }
-
 }

@@ -27,7 +27,6 @@ extend type Query {
 }
 
 extend type Mutation {
-	userSave(command: UserMultiple) : User!
-	userUpdate(command: UserMultiple) : User!
+	userSaveOrUpdate(command: UserMultiple) : User!
 	userDelete(ids: [ID!]!) : DeleteResult!
 }

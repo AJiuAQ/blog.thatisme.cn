@@ -36,12 +36,7 @@ public class UserController {
     }
 
     @MutationMapping
-    public UserDto userSave(@Argument UserCommand command) {
-        return userService.store(command);
-    }
-
-    @MutationMapping
-    public UserDto userUpdate(@Argument UserCommand command) {
+    public UserDto userSaveOrUpdate(@Argument UserCommand command) {
         return userService.store(command);
     }
 

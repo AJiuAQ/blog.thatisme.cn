@@ -4,16 +4,15 @@ import cn.thatisme.blog.common.graphql.pageable.SearchContent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * <p>user dto</p>
  * @author wujinhang 2022/4/20
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class UserDto extends SearchContent implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class UserDto extends SearchContent {
 
     /**
      * id

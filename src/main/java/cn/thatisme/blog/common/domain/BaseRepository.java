@@ -12,16 +12,12 @@ import java.util.List;
 public interface BaseRepository<E extends Entity<E>> {
 
     /**
-     * 上游数据类型，持久化数据--实体模型--dto 转换数据
-     * @return class
+     * 获取各级 class 以供转换使用
+     * @return EntityConversion(dto, entity, po, command)
      */
-    Class<?> upstreamType();
-
-    /**
-     * 下游数据类型，持久化数据--实体模型--dto 转换数据
-     * @return class
-     */
-    Class<E> downstreamType();
+    default EntityConversion entityConversion() {
+        return null;
+    }
 
     E get(Long id);
 

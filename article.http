@@ -1,0 +1,56 @@
+### a
+GRAPHQL http://localhost:8080/graphql
+
+query article {
+    articlePage(query: {pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
+        content {
+            ... on Article {
+                id
+                title
+                content
+                auditor
+                labels
+                topping
+                status
+                createTime
+                updateTime
+            }
+        }
+        totalElement,
+        __typename
+    }
+    articleById(id: 1) {
+        id
+        title
+        content
+        auditor
+        labels
+        topping
+        status
+        createTime
+        updateTime
+    }
+}
+
+{
+  "page": 1,
+  "size": 10
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation article {
+    articleSaveOrUpdate(command: {title: "article_1", content: "content"}) {
+        id
+    }
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation aritlce {
+    articleDelete(ids: [1730153406822633472]) {
+        totalElement
+    }
+}

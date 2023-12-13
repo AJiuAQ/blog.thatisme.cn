@@ -1,0 +1,39 @@
+package cn.thatisme.blog.context.application.dto;
+
+import cn.thatisme.blog.common.graphql.pageable.SearchContent;
+import cn.thatisme.blog.context.domain.article.Title;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * <p></p>
+ * @author wujinhang me@thatisme.cn 2023/12/13
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class ArticleDto extends SearchContent {
+
+    /**
+     * id
+     */
+    private Long id;
+
+    private Title title;
+
+    private String content;
+
+    private Long auditor;
+
+    private List<String> labels;
+
+    private boolean topping;
+
+    private boolean status;
+
+    private Date createTime;
+
+    private Date updateTime;
+}

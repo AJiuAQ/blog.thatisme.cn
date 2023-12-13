@@ -19,53 +19,37 @@ import java.util.List;
  */
 @NoRepositoryBean
 @Transactional(readOnly = false)
+@SuppressWarnings("unchecked")
 public interface BaseRepositoryJpa<P, E extends Entity<E>> extends BaseRepository<E>, JpaRepository<P, Long>, JpaSpecificationExecutor<P> {
 
     default String getIdAttributeName() {
         return "id";
     }
 
-    /**
-     * 上游数据类型，持久化数据--实体模型--dto 转换数据
-     * @return class
-     */
-    Class<P> upstreamType();
-
-    /**
-     * 下游数据类型，持久化数据--实体模型--dto 转换数据
-     * @return class
-     */
-    Class<E> downstreamType();
-
     @Override
     default E get(Long id) {
-        assert downstreamType() != null;
         P referenceById = findById(id).orElse(null);
-        return ConversionServiceUtils.convert(referenceById, downstreamType());
+        return (E) ConversionServiceUtils.convert(referenceById, entityConversion().getEntity());
     }
 
     @Override
     default Page<E> page(PageQuery pageQuery) {
         Page<P> result = findAll((root, query, criteriaBuilder) -> QueryHelper.getPredicate(root, pageQuery, criteriaBuilder), pageQuery.getPageInfo());
-        return result.map(e -> ConversionServiceUtils.convert(e, downstreamType()));
+        return result.map(e -> (E) ConversionServiceUtils.convert(e, entityConversion().getEntity()));
     }
 
     @Override
     default E store(E entity) {
-        assert upstreamType() != null;
-        assert downstreamType() != null;
-        P convert = ConversionServiceUtils.convert(entity, upstreamType());
+        P convert = (P) ConversionServiceUtils.convert(entity, entityConversion().getPo());
         P saved = saveAndFlush(convert);
-        return ConversionServiceUtils.convert(saved, downstreamType());
+        return (E) ConversionServiceUtils.convert(saved, entityConversion().getEntity());
     }
 
     @Override
     default List<E> storeBatch(List<E> entity) {
-        assert upstreamType() != null;
-        assert downstreamType() != null;
-        List<P> convert = ConversionServiceUtils.convertBatch(entity.spliterator(), upstreamType());
+        List<P> convert = (List<P>) ConversionServiceUtils.convertBatch(entity.spliterator(), entityConversion().getPo());
         List<P> saved = saveAllAndFlush(convert);
-        return ConversionServiceUtils.convertBatch(saved.spliterator(), downstreamType());
+        return (List<E>) ConversionServiceUtils.convertBatch(saved.spliterator(), entityConversion().getEntity());
     }
 
     @Override

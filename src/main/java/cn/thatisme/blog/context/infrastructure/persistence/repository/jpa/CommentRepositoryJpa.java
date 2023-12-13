@@ -12,13 +12,4 @@ import cn.thatisme.blog.context.infrastructure.persistence.po.CommentPo;
 public interface CommentRepositoryJpa extends CommentRepository,
         BaseRepositoryJpa<CommentPo, Comment> {
 
-    @Override
-    default Class<CommentPo> upstreamType() {
-        return CommentPo.class;
-    }
-
-    @Override
-    default Class<Comment> downstreamType() {
-        return Comment.class;
-    }
 }

@@ -1,24 +1,12 @@
 package cn.thatisme.blog.context.application;
 
-import cn.thatisme.blog.context.application.command.UserCommand;
+import cn.thatisme.blog.common.domain.BaseService;
 import cn.thatisme.blog.context.application.dto.UserDto;
-import cn.thatisme.blog.context.application.query.UserQuery;
-import org.springframework.data.domain.Page;
-
-import java.util.List;
+import cn.thatisme.blog.context.domain.user.User;
 
 /**
  * <p>用户查询service</p>
  * @author wujinhang 2023/8/15
  */
-public interface UserService {
-
-    UserDto get(Long id);
-
-    Page<UserDto> page(UserQuery query);
-
-    UserDto store(UserCommand command);
-
-    long delete(List<Long> ids);
-
+public interface UserService extends BaseService<User, UserDto> {
 }

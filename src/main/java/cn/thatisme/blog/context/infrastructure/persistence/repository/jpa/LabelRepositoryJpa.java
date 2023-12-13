@@ -11,14 +11,4 @@ import cn.thatisme.blog.context.infrastructure.persistence.po.LabelPo;
  */
 public interface LabelRepositoryJpa extends LabelRepository,
         BaseRepositoryJpa<LabelPo, Label> {
-
-    @Override
-    default Class<LabelPo> upstreamType() {
-        return LabelPo.class;
-    }
-
-    @Override
-    default Class<Label> downstreamType() {
-        return Label.class;
-    }
 }

@@ -37,17 +37,8 @@ query user {
 GRAPHQL http://localhost:8080/graphql
 
 mutation user {
-    userSave(command: {username: "lisi", email: "lisi@q.cn"}) {
+    userSaveOrUpdate(command: {username: "lisi", email: "lisi@q.cn"}) {
     id
-    }
-}
-
-###
-GRAPHQL http://localhost:8080/graphql
-
-mutation user {
-    userUpdate(command: {id: 1730153406822633472, username: "lisi", email: "lisi@qq.cn"}) {
-    id,username,email
     }
 }
 
