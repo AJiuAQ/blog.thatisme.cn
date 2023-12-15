@@ -1,6 +1,5 @@
 package cn.thatisme.blog.context.application.command;
 
-import cn.thatisme.blog.context.domain.article.Title;
 import lombok.Data;
 
 /**
@@ -15,13 +14,13 @@ public class ArticleCommand {
      */
     private Long id;
 
-    private Title title;
+    private String title;
 
     private String content;
 
     private Long auditor;
 
-    private boolean topping;
+    private Boolean topping;
 
-    private boolean status;
+    private Boolean status;
 }

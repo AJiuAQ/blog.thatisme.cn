@@ -14,7 +14,7 @@ input ArticleQuery {
 	pageInfo: PageInfo
 }
 
-input ArticleMultiple {
+input ArticleCommand {
 	id : ID
 	title : String
 	content: String
@@ -26,6 +26,6 @@ extend type Query {
 }
 
 extend type Mutation {
-	articleSaveOrUpdate(command: ArticleMultiple) : Article!
+	articleSaveOrUpdate(command: ArticleCommand) : Article!
 	articleDelete(ids: [ID!]!) : DeleteResult!
 }

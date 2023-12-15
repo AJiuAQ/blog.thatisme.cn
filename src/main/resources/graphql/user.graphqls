@@ -15,7 +15,7 @@ input UserQuery {
 	pageInfo: PageInfo
 }
 
-input UserMultiple {
+input UserCommand {
 	id : ID
 	username : String
 	email: String
@@ -27,6 +27,6 @@ extend type Query {
 }
 
 extend type Mutation {
-	userSaveOrUpdate(command: UserMultiple) : User!
+	userSaveOrUpdate(command: UserCommand) : User!
 	userDelete(ids: [ID!]!) : DeleteResult!
 }
