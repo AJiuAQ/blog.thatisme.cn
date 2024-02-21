@@ -1,0 +1,22 @@
+### a
+GRAPHQL http://localhost:8080/graphql
+
+query label {
+}
+
+{
+  "page": 1,
+  "size": 10
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation label {
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation label {
+}
