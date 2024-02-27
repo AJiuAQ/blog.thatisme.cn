@@ -1,7 +1,6 @@
 package cn.thatisme.blog.context.application.dto;
 
 import cn.thatisme.blog.common.graphql.pageable.SearchContent;
-import cn.thatisme.blog.context.domain.article.Title;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,7 +20,7 @@ public class ArticleDto extends SearchContent {
      */
     private Long id;
 
-    private Title title;
+    private String title;
 
     private String content;
 

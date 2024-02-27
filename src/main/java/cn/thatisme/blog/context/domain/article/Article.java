@@ -1,7 +1,7 @@
 package cn.thatisme.blog.context.domain.article;
 
 import cn.thatisme.blog.common.domain.Entity;
-import cn.thatisme.blog.context.domain.label.LabelName;
+import cn.thatisme.blog.context.domain.label.Label;
 import lombok.Data;
 
 import java.util.Date;
@@ -22,7 +22,7 @@ public class Article implements Entity<Article> {
 
     private Long auditor;
 
-    private List<LabelName> labels;
+    private List<Label> labels;
 
     private boolean topping = false;
 

@@ -2,3 +2,22 @@ type Label {
 	id : ID!
 	name: String!
 }
+
+input LabelQuery {
+	pageInfo: PageInfo
+}
+
+input LabelCommand {
+	id : ID
+	name : String
+}
+
+extend type Query {
+	labelById(id : ID!) : Label
+	labelPage(query: LabelQuery) : PageResult!
+}
+
+extend type Mutation {
+	labelSaveOrUpdate(command: LabelCommand) : Label!
+	labelDelete(ids: [ID!]!) : DeleteResult!
+}
