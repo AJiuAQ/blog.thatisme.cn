@@ -8,3 +8,4 @@ import cn.thatisme.blog.common.domain.ValueObject;
  */
 public record ArticleContent(String content) implements ValueObject<ArticleContent> {
 }
+

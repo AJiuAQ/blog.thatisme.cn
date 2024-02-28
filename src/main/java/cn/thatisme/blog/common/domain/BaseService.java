@@ -35,7 +35,7 @@ public interface BaseService<E extends Entity<E>, DTO extends SearchContent> {
     }
 
     default DTO store(Object command) {
-        E store = repository().store((E) ConversionServiceUtils.convert(command, entityConversion().getCommand()));
+        E store = repository().store((E) ConversionServiceUtils.convert(command, entityConversion().getEntity()));
         return (DTO) ConversionServiceUtils.convert(store, entityConversion().getDto());
     }
 
