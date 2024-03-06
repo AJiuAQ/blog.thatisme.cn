@@ -22,5 +22,5 @@ public class LabelPo extends BasePo {
 
     @Column(length = 64, nullable = false, unique = true)
     @Comment("标签名")
-    private String labelName;
+    private String name;
 }

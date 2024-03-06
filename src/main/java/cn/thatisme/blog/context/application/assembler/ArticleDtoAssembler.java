@@ -27,6 +27,8 @@ public interface ArticleDtoAssembler extends Converter<Article, ArticleDto> {
 
     List<LabelDto> convert(List<Label> label);
 
+    LabelName map(String value);
+
     default String label(LabelName labelName) {
         return labelName.name();
     }

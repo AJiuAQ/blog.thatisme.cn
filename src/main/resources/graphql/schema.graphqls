@@ -7,7 +7,7 @@ input PageInfo {
     sort: [String!] = ["id"]
 }
 
-union SearchContent = User | Article
+union SearchContent = User | Article | Label
 
 type PageResult {
     content: [SearchContent!],

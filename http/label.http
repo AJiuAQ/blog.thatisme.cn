@@ -2,12 +2,23 @@
 GRAPHQL http://localhost:8080/graphql
 
 query label {
+    labelPage(query: {pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
+        content {
+            ... on Label {
+                id
+                name
+            }
+        }
+        totalElement,
+        __typename
+    }
 }
 
 {
   "page": 1,
   "size": 10
 }
+
 
 ###
 GRAPHQL http://localhost:8080/graphql

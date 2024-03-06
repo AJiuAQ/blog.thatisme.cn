@@ -21,7 +21,7 @@ public class LabelQuery extends PageQuery {
     @Query(type = Query.Type.RIGHT_LIKE)
     private String name;
 
-    @Query(blurry = "content")
+    @Query(blurry = "name")
     private String blurry;
 
 }
