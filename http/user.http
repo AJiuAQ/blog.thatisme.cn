@@ -1,4 +1,4 @@
-### a
+### user 查询
 GRAPHQL http://localhost:8080/graphql
 
 query user {
@@ -33,7 +33,7 @@ query user {
   "size": 10
 }
 
-###
+### user 新增、更新
 GRAPHQL http://localhost:8080/graphql
 
 mutation user {
@@ -42,7 +42,7 @@ mutation user {
     }
 }
 
-###
+### user 删除
 GRAPHQL http://localhost:8080/graphql
 
 mutation user {

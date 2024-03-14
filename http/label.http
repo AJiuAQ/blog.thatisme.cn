@@ -1,4 +1,4 @@
-### a
+### label 查询
 GRAPHQL http://localhost:8080/graphql
 
 query label {
@@ -20,14 +20,20 @@ query label {
 }
 
 
-###
+### label 新增、更新
 GRAPHQL http://localhost:8080/graphql
 
 mutation label {
+    labelSaveOrUpdate(command: {id: "1", name: "label2"}) {
+        id, name
+    }
 }
 
-###
+### label 删除
 GRAPHQL http://localhost:8080/graphql
 
 mutation label {
+    labelDelete(ids: ["1"]) {
+        totalElement
+    }
 }

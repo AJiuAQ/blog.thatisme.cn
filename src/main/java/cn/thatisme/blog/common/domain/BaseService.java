@@ -1,5 +1,6 @@
 package cn.thatisme.blog.common.domain;
 
+import cn.thatisme.blog.common.graphql.pageable.DeleteResult;
 import cn.thatisme.blog.common.graphql.pageable.PageQuery;
 import cn.thatisme.blog.common.graphql.pageable.SearchContent;
 import cn.thatisme.blog.common.utils.ConversionServiceUtils;
@@ -39,7 +40,7 @@ public interface BaseService<E extends Entity<E>, DTO extends SearchContent> {
         return (DTO) ConversionServiceUtils.convert(store, entityConversion().getDto());
     }
 
-    default long delete(List<Long> ids) {
+    default DeleteResult delete(List<Long> ids) {
         return repository().remove(ids);
     }
 }

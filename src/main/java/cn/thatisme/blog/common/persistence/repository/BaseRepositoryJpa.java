@@ -2,6 +2,7 @@ package cn.thatisme.blog.common.persistence.repository;
 
 import cn.thatisme.blog.common.domain.BaseRepository;
 import cn.thatisme.blog.common.domain.Entity;
+import cn.thatisme.blog.common.graphql.pageable.DeleteResult;
 import cn.thatisme.blog.common.graphql.pageable.PageQuery;
 import cn.thatisme.blog.common.utils.ConversionServiceUtils;
 import cn.thatisme.blog.common.utils.QueryHelper;
@@ -53,10 +54,10 @@ public interface BaseRepositoryJpa<P, E extends Entity<E>> extends BaseRepositor
     }
 
     @Override
-    default long remove(List<Long> ids) {
-        return delete((root, query, criteriaBuilder) -> criteriaBuilder.and(
+    default DeleteResult remove(List<Long> ids) {
+        return new DeleteResult(delete((root, query, criteriaBuilder) -> criteriaBuilder.and(
                 root.get(getIdAttributeName())
-                        .in(ids)
+                        .in(ids))
         ));
     }
 }

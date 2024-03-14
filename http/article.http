@@ -1,4 +1,4 @@
-### a
+### article 查询
 GRAPHQL http://localhost:8080/graphql
 
 query article {
@@ -37,7 +37,7 @@ query article {
   "size": 10
 }
 
-###
+### article 新增、更新
 GRAPHQL http://localhost:8080/graphql
 
 mutation article {
@@ -46,7 +46,7 @@ mutation article {
     }
 }
 
-###
+### article 删除
 GRAPHQL http://localhost:8080/graphql
 
 mutation aritlce {

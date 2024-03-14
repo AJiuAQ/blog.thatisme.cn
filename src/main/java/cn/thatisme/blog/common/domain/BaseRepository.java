@@ -1,5 +1,6 @@
 package cn.thatisme.blog.common.domain;
 
+import cn.thatisme.blog.common.graphql.pageable.DeleteResult;
 import cn.thatisme.blog.common.graphql.pageable.PageQuery;
 import org.springframework.data.domain.Page;
 
@@ -27,5 +28,5 @@ public interface BaseRepository<E extends Entity<E>> {
 
     List<E> storeBatch(List<E> entity);
 
-    long remove(List<Long> ids);
+    DeleteResult remove(List<Long> ids);
 }

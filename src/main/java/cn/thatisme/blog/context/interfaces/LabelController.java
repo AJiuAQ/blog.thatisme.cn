@@ -1,5 +1,6 @@
 package cn.thatisme.blog.context.interfaces;
 
+import cn.thatisme.blog.common.graphql.pageable.DeleteResult;
 import cn.thatisme.blog.common.graphql.pageable.PageResult;
 import cn.thatisme.blog.context.application.LabelService;
 import cn.thatisme.blog.context.application.command.LabelCommand;
@@ -41,7 +42,7 @@ public class LabelController {
     }
 
     @MutationMapping
-    public long labelDelete(@Argument List<Long> ids) {
+    public DeleteResult labelDelete(@Argument List<Long> ids) {
         return labelService.delete(ids);
     }
 

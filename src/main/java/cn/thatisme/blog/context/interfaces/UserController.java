@@ -1,5 +1,6 @@
 package cn.thatisme.blog.context.interfaces;
 
+import cn.thatisme.blog.common.graphql.pageable.DeleteResult;
 import cn.thatisme.blog.common.graphql.pageable.PageResult;
 import cn.thatisme.blog.context.application.UserService;
 import cn.thatisme.blog.context.application.command.UserCommand;
@@ -41,7 +42,7 @@ public class UserController {
     }
 
     @MutationMapping
-    public long userDelete(@Argument List<Long> ids) {
+    public DeleteResult userDelete(@Argument List<Long> ids) {
         return userService.delete(ids);
     }
 }
