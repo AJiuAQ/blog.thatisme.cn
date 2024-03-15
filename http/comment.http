@@ -1,0 +1,52 @@
+### comment 查询
+GRAPHQL http://localhost:8080/graphql
+
+query comment {
+    commentPage(query: {pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
+        content {
+            ... on Comment {
+                id
+                content
+                user
+                article
+                ip
+                status
+                createTime
+                updateTime
+            }
+        }
+        totalElement,
+        __typename
+    }
+}
+
+{
+  "page": 1,
+  "size": 10
+}
+
+
+### comment 新增、更新
+GRAPHQL http://localhost:8080/graphql
+
+mutation comment {
+    commentSaveOrUpdate(command: {id: "1", content: "comment2", article: 1}) {
+        id
+        content
+        user
+        article
+        ip
+        status
+        createTime
+        updateTime
+    }
+}
+
+### comment 删除
+GRAPHQL http://localhost:8080/graphql
+
+mutation comment {
+    commentDelete(ids: ["1"]) {
+        totalElement
+    }
+}

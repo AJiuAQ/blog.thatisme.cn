@@ -8,3 +8,23 @@ type Comment {
 	createTime : Date!
 	updateTime : Date
 }
+
+input CommentQuery {
+	pageInfo: PageInfo
+}
+
+input CommentCommand {
+	id : ID
+	content : String!
+	article : ID!
+}
+
+extend type Query {
+	commentById(id : ID!) : Comment
+	commentPage(query: CommentQuery) : PageResult!
+}
+
+extend type Mutation {
+	commentSaveOrUpdate(command: CommentCommand) : Comment!
+	commentDelete(ids: [ID!]!) : DeleteResult!
+}

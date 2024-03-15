@@ -1,6 +1,7 @@
 package cn.thatisme.blog.config.graphql;
 
 import cn.thatisme.blog.context.application.dto.ArticleDto;
+import cn.thatisme.blog.context.application.dto.CommentDto;
 import cn.thatisme.blog.context.application.dto.LabelDto;
 import cn.thatisme.blog.context.application.dto.UserDto;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class GraphqlHelper {
         typeMap.put(UserDto.class, "User");
         typeMap.put(ArticleDto.class, "Article");
         typeMap.put(LabelDto.class, "Label");
+        typeMap.put(CommentDto.class, "Comment");
     }
 
 }
