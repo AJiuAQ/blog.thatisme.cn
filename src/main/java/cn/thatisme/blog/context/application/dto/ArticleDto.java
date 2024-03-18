@@ -24,8 +24,6 @@ public class ArticleDto extends SearchContent {
 
     private String content;
 
-    private Long auditor;
-
     private List<LabelDto> labels;
 
     private boolean topping;

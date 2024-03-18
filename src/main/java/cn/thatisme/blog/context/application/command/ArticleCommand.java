@@ -2,6 +2,8 @@ package cn.thatisme.blog.context.application.command;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * <p></p>
  * @author wujinhang me@thatisme.cn 2023/12/13
@@ -18,7 +20,7 @@ public class ArticleCommand {
 
     private String content;
 
-    private Long auditor;
+    private List<LabelCommand> labels;
 
     private Boolean topping;
 

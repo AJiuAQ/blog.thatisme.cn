@@ -8,8 +8,7 @@ query article {
                 id
                 title
                 content
-                auditor
-                labels
+                labels {id, name}
                 topping
                 status
                 createTime
@@ -23,8 +22,7 @@ query article {
         id
         title
         content
-        auditor
-        labels
+        labels {id, name}
         topping
         status
         createTime
@@ -41,8 +39,19 @@ query article {
 GRAPHQL http://localhost:8080/graphql
 
 mutation article {
-    articleSaveOrUpdate(command: {title: "article_1", content: "content"}) {
+    articleSaveOrUpdate(command: {
+        title: "article_4",
+        content: "content",
+        labels: [{id: 1768130493315354624}]
+    }) {
         id
+        title
+        content
+        labels {id, name}
+        topping
+        status
+        createTime
+        updateTime
     }
 }
 
@@ -50,7 +59,7 @@ mutation article {
 GRAPHQL http://localhost:8080/graphql
 
 mutation aritlce {
-    articleDelete(ids: [1730153406822633472]) {
+    articleDelete(ids: [1769661005896904704]) {
         totalElement
     }
 }

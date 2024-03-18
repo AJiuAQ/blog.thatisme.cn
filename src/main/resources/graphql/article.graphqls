@@ -2,11 +2,10 @@ type Article {
 	id : ID!
 	title : String!
 	content: String
-	auditor : ID!
-	labels : String!
+	labels : [Label!]
 	topping : Boolean!
 	status : Boolean!
-	createTime : Date!
+	createTime : Date
 	updateTime : Date
 }
 
@@ -18,6 +17,7 @@ input ArticleCommand {
 	id : ID
 	title : String
 	content: String
+	labels : [LabelCommand!]
 }
 
 extend type Query {

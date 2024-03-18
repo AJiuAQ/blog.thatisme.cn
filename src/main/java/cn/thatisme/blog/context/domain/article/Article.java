@@ -20,8 +20,6 @@ public class Article implements Entity<Article> {
 
     private ArticleContent content;
 
-    private Long auditor;
-
     private List<Label> labels;
 
     private boolean topping = false;

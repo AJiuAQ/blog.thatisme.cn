@@ -6,6 +6,7 @@ import cn.thatisme.blog.context.domain.article.Article;
 import cn.thatisme.blog.context.domain.article.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p></p>
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;

@@ -30,7 +30,7 @@ query comment {
 GRAPHQL http://localhost:8080/graphql
 
 mutation comment {
-    commentSaveOrUpdate(command: {id: "1", content: "comment2", article: 1}) {
+    commentSaveOrUpdate(command: {id: "1", content: "comment2", article: 1769659738743185408}) {
         id
         content
         user

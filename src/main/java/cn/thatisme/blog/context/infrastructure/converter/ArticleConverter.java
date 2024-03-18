@@ -10,6 +10,5 @@ import org.springframework.core.convert.converter.Converter;
 @Mapper(componentModel = "spring", uses = ValueObjectStrategy.class)
 public interface ArticleConverter extends Converter<Article, ArticlePo> {
 
-    @Mapping(source = "auditor", target = "auditor.id")
     ArticlePo convert(Article article);
 }

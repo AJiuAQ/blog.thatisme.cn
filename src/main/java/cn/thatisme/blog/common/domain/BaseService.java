@@ -5,6 +5,7 @@ import cn.thatisme.blog.common.graphql.pageable.PageQuery;
 import cn.thatisme.blog.common.graphql.pageable.SearchContent;
 import cn.thatisme.blog.common.utils.ConversionServiceUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author wujinhang me@thatisme.cn 2023/12/13
  */
 @SuppressWarnings("unchecked")
+@Transactional
 public interface BaseService<E extends Entity<E>, DTO extends SearchContent> {
 
     BaseRepository<E> repository();

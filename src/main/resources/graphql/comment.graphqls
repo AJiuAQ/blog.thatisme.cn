@@ -1,11 +1,11 @@
 type Comment {
 	id : ID!
 	content: String!
-	user : ID!
+	user : ID
 	article : ID!
 	ip : String
 	status : Boolean!
-	createTime : Date!
+	createTime : Date
 	updateTime : Date
 }
 

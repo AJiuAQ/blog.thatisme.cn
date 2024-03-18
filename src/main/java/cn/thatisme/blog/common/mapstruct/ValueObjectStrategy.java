@@ -129,7 +129,7 @@ public class ValueObjectStrategy {
      * @return long
      */
     public <T extends BasePo> Long poToLong(T value) {
-        return value.getId();
+        return value == null ? null : value.getId();
     }
 
     /**

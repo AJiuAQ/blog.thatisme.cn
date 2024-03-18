@@ -30,10 +30,6 @@ public class ArticlePo extends BasePo {
     @Comment("正文")
     private String content;
 
-    @ManyToOne
-    @Comment("作者")
-    private UserPo auditor;
-
     @ManyToMany
     @JoinTable(name = "article_label", joinColumns = { @JoinColumn(name = "article_id")},
             inverseJoinColumns = { @JoinColumn(name = "label_id")}
