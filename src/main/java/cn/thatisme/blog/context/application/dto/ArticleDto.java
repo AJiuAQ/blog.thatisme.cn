@@ -33,4 +33,9 @@ public class ArticleDto extends SearchContent {
     private Date createTime;
 
     private Date updateTime;
+
+    @Override
+    public String getGraphqlTypeName() {
+        return "Article";
+    }
 }

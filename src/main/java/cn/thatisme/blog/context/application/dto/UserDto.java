@@ -36,4 +36,9 @@ public class UserDto extends SearchContent {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+    @Override
+    public String getGraphqlTypeName() {
+        return "User";
+    }
 }

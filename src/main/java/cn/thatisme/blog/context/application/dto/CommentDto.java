@@ -33,4 +33,9 @@ public class CommentDto extends SearchContent {
     private Date createTime;
 
     private Date updatedTime;
+
+    @Override
+    public String getGraphqlTypeName() {
+        return "Comment";
+    }
 }

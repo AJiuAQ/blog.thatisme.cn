@@ -5,7 +5,7 @@ type Comment {
 	article : ID!
 	ip : String
 	status : Boolean!
-	createTime : Date
+	createTime : Date!
 	updateTime : Date
 }
 

@@ -22,4 +22,9 @@ public class LabelDto extends SearchContent {
     private Long id;
 
     private String name;
+
+    @Override
+    public String getGraphqlTypeName() {
+        return "Label";
+    }
 }
