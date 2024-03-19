@@ -32,6 +32,8 @@ dependencies {
 //    testImplementation 'com.h2database:h2'
     implementation 'com.h2database:h2'
 
+    implementation 'com.nimbusds:nimbus-jose-jwt:9.37.3'
+
 }
 
 compileJava {
