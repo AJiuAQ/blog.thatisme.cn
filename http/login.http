@@ -1,0 +1,23 @@
+### login 登录
+GRAPHQL http://localhost:8080/graphql
+
+mutation login($username: String!, $password: String!) {
+    login(command: {username: $username, password: $password}) {
+        token
+        user {
+            id
+            username
+            email
+            admin
+            loginTime
+            createTime
+            updateTime
+        }
+    }
+    __typename
+}
+
+{
+"username": "admin",
+"password": "123456"
+}

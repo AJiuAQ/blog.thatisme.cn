@@ -17,7 +17,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     implementation 'com.mysql:mysql-connector-j:8.2.0'
     implementation group: 'org.yaml', name: 'snakeyaml', version: '2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.5'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
     implementation group: 'cn.hutool', name: 'hutool-all', version: '5.8.26'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'

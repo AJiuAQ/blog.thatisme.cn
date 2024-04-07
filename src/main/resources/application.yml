@@ -7,3 +7,10 @@ spring:
     graphiql:
       enabled: true
 persistence: jpa
+# ======== JWT配置 ========
+jwt:
+  secret: 1234567890123456
+  expirationTime: 604800
+  issuer: springboot3-security
+  header: Authorization
+  tokenHead: Bearer

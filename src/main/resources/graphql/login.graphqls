@@ -1,0 +1,13 @@
+type LoginUser {
+	token: String!
+	user: User
+}
+
+input UserLoginCommand {
+	username: String!
+	password: String!
+}
+
+extend type Mutation {
+	login(command : UserLoginCommand!) : LoginUser
+}
