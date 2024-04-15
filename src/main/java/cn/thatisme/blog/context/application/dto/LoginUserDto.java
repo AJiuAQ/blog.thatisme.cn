@@ -14,12 +14,13 @@ public class LoginUserDto {
 
     private String token;
 
-    private UserDto userDto;
+    private String username;
 
     public LoginUserDto(Authentication authentication) {
         if (null == authentication) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
         token = JwtUtils.generateToken(authentication.getName());
+        username = authentication.getName();
     }
 }

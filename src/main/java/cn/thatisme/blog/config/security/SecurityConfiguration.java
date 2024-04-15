@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfiguration {
 
     @Resource
@@ -75,11 +77,11 @@ public class SecurityConfiguration {
                             String requestURI = object.getRequest().getRequestURI();
                             PathMatcher pathMatcher = new AntPathMatcher();
                             // 白名单请求直接放行
-                            for (String url : SecurityConstant.WHITELIST) {
-                                if (pathMatcher.match(url, requestURI)) {
-                                    return new AuthorizationDecision(true);
-                                }
-                            }
+//                            for (String url : SecurityConstant.WHITELIST) {
+//                                if (pathMatcher.match(url, requestURI)) {
+//                                    return new AuthorizationDecision(true);
+//                                }
+//                            }
                             // 获取访问该路径所需权限
                             Map<String, ConfigAttribute> permissionMap = SecurityConstant.PERMISSION_MAP;
                             List<ConfigAttribute> apiNeedPermissions = new ArrayList<>();
@@ -89,9 +91,9 @@ public class SecurityConfiguration {
                                 }
                             }
                             // 如果接口没有配置权限则直接放行
-                            if (apiNeedPermissions.isEmpty()) {
-                                return new AuthorizationDecision(true);
-                            }
+//                            if (apiNeedPermissions.isEmpty()) {
+//                                return new AuthorizationDecision(true);
+//                            }
                             // 获取当前登录用户权限信息
                             Collection<? extends GrantedAuthority> authorities = authentication.get().getAuthorities();
                             // 判断当前用户是否有足够的权限访问

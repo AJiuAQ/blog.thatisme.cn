@@ -43,13 +43,23 @@ public class SecurityConstant {
         PERMISSION_MAP.put("/admin", new SecurityConfig(PERMISSION.ADMIN.getValue()));
     }
 
+    public final static String ADMIN = "admin";
+    public final static String USER = "user";
+    public final static String ANONYMOUS = "anonymous";
+
+    public static String hasRole(String role) {
+        return "hasRole(" + role + ")";
+    }
+
 
     /**
      * 模拟权限
      */
     @Getter
     public enum PERMISSION {
-        ADMIN("admin"), USER("user");
+        ADMIN(SecurityConstant.ADMIN),
+        USER(SecurityConstant.USER),
+        ANONYMOUS(SecurityConstant.ANONYMOUS);
 
         private final String value;
 

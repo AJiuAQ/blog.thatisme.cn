@@ -1,6 +1,6 @@
 type LoginUser {
 	token: String!
-	user: User
+	username: String!
 }
 
 input UserLoginCommand {

@@ -25,6 +25,11 @@ public class BlogRuntimeWiringConfigurer {
     private void addPersonTypeResolver(RuntimeWiring.Builder builder) {
         builder.type("SearchContent", typeBuilder -> typeBuilder.typeResolver(env -> {
             Object javaObject = env.getObject();
+            try {
+                GraphqlHelper.init();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             return env.getSchema().getObjectType(GraphqlHelper.getTypeMap().get(javaObject.getClass()));
         }));
     }

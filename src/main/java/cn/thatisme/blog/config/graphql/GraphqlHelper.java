@@ -3,8 +3,6 @@ package cn.thatisme.blog.config.graphql;
 import cn.thatisme.blog.common.graphql.pageable.SearchContent;
 import lombok.Getter;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 
@@ -16,7 +14,7 @@ import java.util.Set;
  * <p></p>
  * @author wujinhang me@thatisme.cn 2023/11/30
  */
-public class GraphqlHelper implements ApplicationRunner {
+public class GraphqlHelper {
 
     @Getter
     private static final Map<Class<?>, String> typeMap = new HashMap<>();
@@ -26,8 +24,7 @@ public class GraphqlHelper implements ApplicationRunner {
         typeMap.put(clazz, typeName);
     }
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public static void init() throws Exception {
         ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
         provider.addIncludeFilter(new AssignableTypeFilter(SearchContent.class));
 

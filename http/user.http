@@ -1,5 +1,6 @@
 ### user 查询
 GRAPHQL http://localhost:8080/graphql
+Authorization:
 
 query user {
     userPage(query: {username: "", pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
