@@ -32,7 +32,7 @@ public class SecurityUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return permissions.stream()
-                .map(permission -> new SimpleGrantedAuthority(permission.getValue()))
+                .map(permission -> new SimpleGrantedAuthority(SecurityConstant.ROLE_PREFIX + permission.getValue()))
                 .collect(Collectors.toList());
     }
 

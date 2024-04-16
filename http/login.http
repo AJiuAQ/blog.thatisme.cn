@@ -13,3 +13,31 @@ mutation login($username: String!, $password: String!) {
 "username": "admin",
 "password": "123456"
 }
+
+### 带token的请求
+### user 查询
+GRAPHQL http://localhost:8080/graphql
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6InNwcmluZ2Jvb3QzLXNlY3VyaXR5IiwiYXVkIjpudWxsLCJpYXQiOjE3MTMyMzY1MjEsImV4cCI6MTcxMzg0MTMyMX0.OqS1hxfVMU115-mHTy379cl3gcYla1BASo5juGibvjw
+
+query user {
+    userPage(query: {username: "", pageInfo: {page: 1, size: 10, sort: ["id"]}}) {
+        content {
+            ... on User {
+                id,
+                username,
+                email,
+                admin,
+                loginTime,
+                createTime,
+                updateTime
+            }
+        }
+        totalElement,
+        __typename
+    }
+}
+
+{
+  "page": 1,
+  "size": 10
+}

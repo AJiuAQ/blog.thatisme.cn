@@ -13,6 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * Spring Security 模拟数据
  */
 public class SecurityConstant {
+
+    public static final String ROLE_PREFIX = "ROLE_";
+
     /**
      * 模拟用户数据。key：用户名，value：密码
      */
@@ -43,14 +46,9 @@ public class SecurityConstant {
         PERMISSION_MAP.put("/admin", new SecurityConfig(PERMISSION.ADMIN.getValue()));
     }
 
-    public final static String ADMIN = "admin";
-    public final static String USER = "user";
-    public final static String ANONYMOUS = "anonymous";
-
-    public static String hasRole(String role) {
-        return "hasRole(" + role + ")";
-    }
-
+    public final static String ADMIN = "ADMIN";
+    public final static String USER = "USER";
+    public final static String ANONYMOUS = "ANONYMOUS";
 
     /**
      * 模拟权限

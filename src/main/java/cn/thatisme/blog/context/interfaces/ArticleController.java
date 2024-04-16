@@ -2,6 +2,7 @@ package cn.thatisme.blog.context.interfaces;
 
 import cn.thatisme.blog.common.graphql.pageable.DeleteResult;
 import cn.thatisme.blog.common.graphql.pageable.PageResult;
+import cn.thatisme.blog.config.security.SecurityConstant;
 import cn.thatisme.blog.context.application.ArticleService;
 import cn.thatisme.blog.context.application.command.ArticleCommand;
 import cn.thatisme.blog.context.application.dto.ArticleDto;
@@ -22,7 +23,6 @@ import java.util.List;
  */
 @Controller
 @RequiredArgsConstructor
-@PreAuthorize("isAuthenticated()")
 public class ArticleController {
 
     private final ArticleService articleService;
@@ -38,11 +38,13 @@ public class ArticleController {
         return new PageResult<>(page.getContent(), page.getTotalElements());
     }
 
+    @PreAuthorize("hasRole('" + SecurityConstant.ADMIN + "')")
     @MutationMapping
     public ArticleDto articleSaveOrUpdate(@Argument ArticleCommand command) {
         return articleService.store(command);
     }
 
+    @PreAuthorize("hasRole('" + SecurityConstant.ADMIN + "')")
     @MutationMapping
     public DeleteResult articleDelete(@Argument List<Long> ids) {
         return articleService.delete(ids);

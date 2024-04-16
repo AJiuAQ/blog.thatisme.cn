@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequiredArgsConstructor
-@PreAuthorize("hasRole(" + SecurityConstant.ADMIN + ")")
+@PreAuthorize("hasRole('" + SecurityConstant.ADMIN + "')")
 public class UserController {
 
     private final UserService userService;

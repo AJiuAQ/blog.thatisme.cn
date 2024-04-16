@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,7 +24,7 @@ public class LoginController {
     @Resource
     private AuthenticationManager authenticationManager;
 
-//    @PreAuthorize("isAnonymous()")
+    @PreAuthorize("isAnonymous()")
     @MutationMapping
     public LoginUserDto login(@Argument UserLoginCommand command) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(command.getUsername(), command.getPassword());
