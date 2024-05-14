@@ -29,6 +29,7 @@ public class EnvFileUtils {
             properties = new Properties();
             try {
                 properties.load(new FileReader(fileName));
+                logger.info("获取配置文件成功：" + DEFAULT_FILE_NAME);
             } catch (IOException e) {
                 logger.warn("获取配置文件失败：" + e.getMessage());
             }
@@ -38,7 +39,6 @@ public class EnvFileUtils {
         for (String stringPropertyName : properties.stringPropertyNames()) {
             result.put(stringPropertyName, properties.getProperty(stringPropertyName));
         }
-        logger.info("获取配置文件成功：" + DEFAULT_FILE_NAME);
         return result;
     }
 
