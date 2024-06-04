@@ -9,8 +9,8 @@ spring:
 persistence: jpa
 # ======== JWT配置 ========
 jwt:
-  secret: 1234567890123456
+  secret: 20240604
   expirationTime: 604800
-  issuer: springboot3-security
+  issuer: thatisme.cn
   header: Authorization
   tokenHead: Bearer
