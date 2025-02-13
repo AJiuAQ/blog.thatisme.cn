@@ -1,11 +1,10 @@
 spring:
   datasource:
     driver-class-name: org.digitalforge.log4jdbc.LoggingDriver
-    url: jdbc:log4jdbc:mysql://101.43.160.60/blog_test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    url: jdbc:log4jdbc:mysql://${DB_IP}/blog_test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
     username: root
     password: ${DB_PASSWORD:root}
   jpa:
-    database: mysql
     hibernate:
       ddl-auto: update
     show-sql: true
