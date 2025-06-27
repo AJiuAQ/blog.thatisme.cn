@@ -1,6 +1,6 @@
 ### user 查询
 GRAPHQL http://localhost:8080/graphql
-Authorization:
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ6aGFuZ3NhbiIsImlzcyI6InRoYXRpc21lLmNuIiwiYXVkIjpudWxsLCJpYXQiOjE3NDEwMDU2MzEsImV4cCI6MTc0MTAwOTIzMX0.ccT8vC2f9tbRLVrtz9mxiA0g7vV_aKGSDJ7keJ1BUf8
 
 query user {
     userPage(query: {username: "", pageInfo: {page: 1, size: 10, sort: ["id"]}}) {

@@ -6,17 +6,18 @@ import cn.thatisme.blog.common.domain.ValueObject;
  * <p>user id</p>
  * @author wujinhang 2022/4/13
  */
-public record Account(Username username, Email email, Password password, Token token) implements ValueObject<Account> {
+public record Account(Username username, Email email, Password password, Token token, TOTPSecret totpSecret) implements ValueObject<Account> {
 
     public Account(Username username, Email email) {
-        this(username, email, null, null);
+        this(username, email, null, null, null);
     }
 
-    public Account(Username username, Email email, Password password, Token token) {
+    public Account(Username username, Email email, Password password, Token token, TOTPSecret totpSecret) {
         this.username = username;
         this.email = email;
-        this.password = Password.create(password);
+        this.password = password;
         this.token = token;
+        this.totpSecret = totpSecret;
     }
 
     public boolean checkPassword(String passwordStr) {
@@ -27,15 +28,10 @@ public record Account(Username username, Email email, Password password, Token t
         if (!checkPassword(oldPasswordStr)) {
             throw new RuntimeException("原密码不正确");
         }
-        return new Account(username, email, Password.create(newPasswordStr, password.salt()), token);
-    }
-
-    public boolean valid() {
-        return this.token != null && this.token.expireTime()!= null &&
-                this.token.expireTime().getTime() >= System.currentTimeMillis();
+        return new Account(username, email, Password.create(newPasswordStr, password.salt()), token, totpSecret);
     }
 
     public Account updateToken(String tokenStr) {
-        return new Account(username, email, password, Token.create(tokenStr));
+        return new Account(username, email, password, new Token(tokenStr), totpSecret);
     }
 }

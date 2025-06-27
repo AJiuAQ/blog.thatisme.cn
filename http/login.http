@@ -5,13 +5,47 @@ mutation login($username: String!, $password: String!) {
     login(command: {username: $username, password: $password}) {
         token
         username
+        totp
     }
     __typename
 }
 
 {
-"username": "admin",
-"password": "123456"
+  "username": "zhangsan",
+  "password": "123456"
+}
+
+### login 登录 TOTP
+GRAPHQL http://localhost:8080/graphql
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ6aGFuZ3NhbiIsImlzcyI6InRoYXRpc21lLmNuIiwiYXVkIjoiVE9UUCIsImlhdCI6MTc0MTAwNTU4MywiZXhwIjoxNzQxMDA1ODgzfQ.w7khAJKd2P-aq6ltlWjX6FxabJd4pjzdSdxR_lbVkVk
+
+mutation loginTotp($code: Int!) {
+    loginTotp(command: {code: $code}) {
+        token
+        username
+        totp
+    }
+    __typename
+}
+
+{
+  "code": 927288
+}
+
+### login 登录 获取qr
+GRAPHQL http://localhost:8080/graphql
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ6aGFuZ3NhbiIsImlzcyI6InRoYXRpc21lLmNuIiwiYXVkIjoiVE9UUCIsImlhdCI6MTc0MTAwNDgzNywiZXhwIjoxNzQxMDA1MTM3fQ._PUaQ87HPjeSnmy6-RhgSTYwmm8RAPKZ5adMn91k7pg
+
+query qrBase64 {
+    qrBase64
+}
+
+### login 绑定 Totp
+GRAPHQL http://localhost:8080/graphql
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ6aGFuZ3NhbiIsImlzcyI6InRoYXRpc21lLmNuIiwiYXVkIjoiVE9UUCIsImlhdCI6MTc0MTAwNTE1OCwiZXhwIjoxNzQxMDA1NDU4fQ._Q_jrc3KSPP-uFaHJnZxQ0nTwIlShMEJZRv8mbQGCL0
+
+mutation bindTotp {
+    bindTotp
 }
 
 ### 带token的请求

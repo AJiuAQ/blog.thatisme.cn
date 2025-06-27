@@ -26,7 +26,7 @@ class UserRepositoryJpaTest {
     private static final String EMAIL = "me@thatisme.cn";
 
     static User user = User.builder()
-            .account(new Account(new Username("tom"), new Email(EMAIL), new Password("1", "1"), null))
+            .account(new Account(new Username("tom"), new Email(EMAIL), new Password("1", "1"), null, null))
             .build();
 
     @Test

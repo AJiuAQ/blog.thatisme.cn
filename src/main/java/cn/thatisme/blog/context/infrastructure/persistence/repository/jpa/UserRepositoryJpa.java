@@ -8,6 +8,7 @@ import cn.thatisme.blog.context.application.dto.UserDto;
 import cn.thatisme.blog.context.domain.user.Email;
 import cn.thatisme.blog.context.domain.user.User;
 import cn.thatisme.blog.context.domain.user.UserRepository;
+import cn.thatisme.blog.context.domain.user.Username;
 import cn.thatisme.blog.context.infrastructure.persistence.po.UserPo;
 
 /**
@@ -27,5 +28,20 @@ public interface UserRepositoryJpa extends UserRepository,
         return (User) ConversionServiceUtils.convert(userPo, entityConversion().getEntity());
     }
 
+    @Override
+    default User get(Username username) {
+        UserPo userPo = getUserPoByUsername(username.username());
+        return (User) ConversionServiceUtils.convert(userPo, entityConversion().getEntity());
+    }
+
+    @Override
+    default User updateTotpSecretByUsername(String username, String totpSecret) {
+        UserPo userPoByUsername = getUserPoByUsername(username);
+        userPoByUsername.setTotpSecret(totpSecret);
+        return (User) ConversionServiceUtils.convert(save(userPoByUsername), entityConversion().getEntity());
+    }
+
     UserPo getUserPoByEmail(String email);
+
+    UserPo getUserPoByUsername(String username);
 }

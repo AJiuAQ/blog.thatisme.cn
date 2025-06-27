@@ -29,9 +29,9 @@ public class EnvFileUtils {
             properties = new Properties();
             try {
                 properties.load(new FileReader(fileName));
-                logger.info("获取配置文件成功：" + DEFAULT_FILE_NAME);
+                logger.info("获取配置文件成功：{}", DEFAULT_FILE_NAME);
             } catch (IOException e) {
-                logger.warn("获取配置文件失败：" + e.getMessage());
+                logger.warn("获取配置文件失败：{}", e.getMessage());
             }
             propertiesMap.put(fileName, properties);
         }

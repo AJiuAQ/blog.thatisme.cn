@@ -9,4 +9,8 @@ import cn.thatisme.blog.common.domain.BaseRepository;
 public interface UserRepository extends BaseRepository<User> {
 
     User get(Email email);
+
+    User get(Username username);
+
+    User updateTotpSecretByUsername(String username, String totpSecret);
 }

@@ -17,6 +17,11 @@ public class SecurityConstant {
     public static final String ROLE_PREFIX = "ROLE_";
 
     /**
+     * TOTP token 受众 key
+     */
+    public static final String TOTP_AUDIENCE = "TOTP";
+
+    /**
      * 模拟用户数据。key：用户名，value：密码
      */
     public static final Map<String, String> USER_MAP = new ConcurrentHashMap<>();

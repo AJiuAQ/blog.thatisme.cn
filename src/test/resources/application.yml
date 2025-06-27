@@ -1,17 +1,31 @@
 server:
-  port: 8088
-
+  port: 8080
 spring:
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-    open-in-view: false
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+#      password:
+      database: 0 # 默认使用 0 号数据库
+      lettuce:
+        pool:
+          max-active: 8   # 连接池最大连接数
+          max-idle: 8     # 连接池最大空闲连接
+          min-idle: 0     # 连接池最小空闲连接
+          max-wait: 100ms # 获取连接的最大等待时间
   datasource:
-    driver-class-name: org.digitalforge.log4jdbc.LoggingDriver
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/blog_test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
+    hikari:
+      max-lifetime: 120000
+  profiles:
+    active: mysql
+  graphql:
+    graphiql:
+      enabled: true
+persistence: jpa
+# ======== JWT配置 ========
+jwt:
+  secret: thatisme.
+  expirationTime: 3600
+  issuer: thatisme.cn
+  header: Authorization
+  tokenHead: Bearer

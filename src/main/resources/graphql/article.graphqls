@@ -1,6 +1,7 @@
 type Article {
 	id : ID!
 	title : String!
+	overview: String
 	content: String
 	labels : [Label!]
 	topping : Boolean!
@@ -16,6 +17,7 @@ input ArticleQuery {
 input ArticleCommand {
 	id : ID
 	title : String
+	overview: String
 	content: String
 	labels : [LabelCommand!]
 }

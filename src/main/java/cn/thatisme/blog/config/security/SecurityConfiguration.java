@@ -1,9 +1,11 @@
 package cn.thatisme.blog.config.security;
 
+import cn.thatisme.blog.config.security.totp.TOTPAuthenticationFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,7 +30,9 @@ public class SecurityConfiguration {
     @Resource
     private UserDetailsService userDetailsService;
     @Resource
-    private TokenAuthenticationFilter myAuthenticationFilter;
+    private TokenAuthenticationFilter tokenAuthenticationFilter;
+    @Resource
+    private TOTPAuthenticationFilter totpAuthenticationFilter;
 
     /**
      * 鉴权管理类
@@ -36,6 +40,17 @@ public class SecurityConfiguration {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    /**
+     * 凭证提供
+     */
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
     }
 
     /**
@@ -71,10 +86,11 @@ public class SecurityConfiguration {
                 // 禁用session
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .anonymous(AbstractHttpConfigurer::disable)
                 // 配置拦截信息
-                .authorizeHttpRequests(authorization -> {
+                /*.authorizeHttpRequests(authorization -> {
                     authorization.anyRequest().permitAll();
-                })
+                })*/
                 /*.authorizeHttpRequests(authorization -> authorization
                         // 允许所有的OPTIONS请求
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
@@ -122,7 +138,9 @@ public class SecurityConfiguration {
                 // 注册重写后的UserDetailsService实现
                 .userDetailsService(userDetailsService)
                 // 注册自定义拦截器
-                .addFilterBefore(myAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(totpAuthenticationFilter, TokenAuthenticationFilter.class)
+                .authenticationProvider(daoAuthenticationProvider())
                 .build();
     }
 }

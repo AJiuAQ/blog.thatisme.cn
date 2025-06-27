@@ -1,11 +1,11 @@
 package cn.thatisme.blog.config.security;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,12 +14,16 @@ import java.util.stream.Collectors;
  * Spring Security用户信息
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class SecurityUserDetails implements UserDetails {
 
     private String username;
 
     private String password;
+
+    private String totpSecret;
 
     private List<SecurityConstant.PERMISSION> permissions;
 
@@ -31,6 +35,9 @@ public class SecurityUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (permissions == null) {
+            return new ArrayList<>();
+        }
         return permissions.stream()
                 .map(permission -> new SimpleGrantedAuthority(SecurityConstant.ROLE_PREFIX + permission.getValue()))
                 .collect(Collectors.toList());

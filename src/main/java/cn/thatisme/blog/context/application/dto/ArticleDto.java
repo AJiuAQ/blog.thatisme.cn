@@ -22,6 +22,8 @@ public class ArticleDto extends SearchContent {
 
     private String title;
 
+    private String overview;
+
     private String content;
 
     private List<LabelDto> labels;

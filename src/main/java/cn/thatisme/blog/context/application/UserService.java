@@ -9,4 +9,6 @@ import cn.thatisme.blog.context.domain.user.User;
  * @author wujinhang 2023/8/15
  */
 public interface UserService extends BaseService<User, UserDto> {
+
+    User updateTotpSecretByUsername(String username, String totpSecret);
 }

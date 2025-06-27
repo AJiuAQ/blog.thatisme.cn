@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public BaseRepository<User> repository() {
         return userRepository;
     }
+
+    @Override
+    public User updateTotpSecretByUsername(String username, String totpSecret) {
+        return userRepository.updateTotpSecretByUsername(username, totpSecret);
+    }
 }

@@ -1,6 +1,7 @@
 type LoginUser {
 	token: String!
 	username: String!
+	totp: Boolean!
 }
 
 input UserLoginCommand {
@@ -8,6 +9,16 @@ input UserLoginCommand {
 	password: String!
 }
 
+input UserLoginTotpCommand {
+	code: Int!
+}
+
+extend type Query {
+	qrBase64 : String!
+}
+
 extend type Mutation {
 	login(command : UserLoginCommand!) : LoginUser
+	loginTotp(command : UserLoginTotpCommand!) : LoginUser
+	bindTotp : Boolean
 }

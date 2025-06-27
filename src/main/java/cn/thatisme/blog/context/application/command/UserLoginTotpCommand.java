@@ -7,15 +7,10 @@ import lombok.Data;
  * @author wujinhang me@thatisme.cn 2023/11/30
  */
 @Data
-public class UserLoginCommand {
+public class UserLoginTotpCommand {
 
     /**
      * 用户名
      */
-    private String username;
-
-    /**
-     * password
-     */
-    private String password;
+    private Integer code;
 }

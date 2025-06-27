@@ -39,6 +39,10 @@ public class UserPo extends BasePo {
     @Comment("密码")
     private String password;
 
+    @Column(length = 60)
+    @Comment("TOTP 密钥")
+    private String totpSecret;
+
     @Column
     @Comment("登陆时间")
     private LocalDateTime loginTime;

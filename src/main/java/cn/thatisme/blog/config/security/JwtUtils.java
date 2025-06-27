@@ -31,14 +31,13 @@ public class JwtUtils {
 
     /**
      * 初始化参数
-     *
-     * @param header         JWT标签头
-     * @param tokenHead      Token头
-     * @param issuer         签发者
-     * @param secretKey      密钥 最小长度：4
+     * @param header JWT标签头
+     * @param tokenHead Token头
+     * @param issuer 签发者
+     * @param secretKey 密钥 最小长度：4
      * @param expirationTime Token过期时间 单位：秒
-     * @param issuers        签发者列表 校验签发者时使用
-     * @param audience       接受者
+     * @param issuers 签发者列表 校验签发者时使用
+     * @param audience 接受者
      */
     public static void initialize(String header, String tokenHead, String issuer, String secretKey, long expirationTime, List<String> issuers, String audience) {
         jwtConfig = new JwtConfig();
@@ -72,29 +71,37 @@ public class JwtUtils {
 
     /**
      * 生成 Token
-     *
      * @param subject 主题
      * @return Token
      */
     public static String generateToken(String subject) {
-        return generateToken(subject, jwtConfig.getExpirationTime());
+        return generateToken(subject, jwtConfig.getAudience(), jwtConfig.getExpirationTime());
+    }
+
+
+    /**
+     * 生成供 TOTP 使用的临时 token
+     * @param subject 主题
+     * @return Token
+     */
+    public static String generateTOTPToken(String subject) {
+        return generateToken(subject, SecurityConstant.TOTP_AUDIENCE, 300);
     }
 
     /**
      * 生成 Token
-     *
-     * @param subject        主题
+     * @param subject 主题
      * @param expirationTime 过期时间
      * @return Token
      */
-    public static String generateToken(String subject, long expirationTime) {
+    public static String generateToken(String subject, String audience, long expirationTime) {
         Date now = new Date();
         Date expiration = new Date(now.getTime() + expirationTime * 1000);
 
         return JWT.create()
                 .withSubject(subject)
                 .withIssuer(jwtConfig.getIssuer())
-                .withAudience(jwtConfig.getAudience())
+                .withAudience(audience)
                 .withIssuedAt(now)
                 .withExpiresAt(expiration)
                 .sign(jwtConfig.getAlgorithm());
@@ -112,7 +119,6 @@ public class JwtUtils {
 
     /**
      * 验证 Token
-     *
      * @param token token
      * @return 验证通过返回true，否则返回false
      */
@@ -131,7 +137,6 @@ public class JwtUtils {
 
     /**
      * 判断Token是否过期
-     *
      * @param token token
      * @return 过期返回true，否则返回false
      */
@@ -152,13 +157,22 @@ public class JwtUtils {
 
     /**
      * 获取 Token 中的主题
-     *
      * @param token token
      * @return 主题
      */
     public static String getSubject(String token) {
         token = getTokenContent(token);
         return JWT.decode(token).getSubject();
+    }
+
+    /**
+     * 获取 Token 中的主题
+     * @param token token
+     * @return 主题
+     */
+    public static List<String> getAudience(String token) {
+        token = getTokenContent(token);
+        return JWT.decode(token).getAudience();
     }
 
     /**

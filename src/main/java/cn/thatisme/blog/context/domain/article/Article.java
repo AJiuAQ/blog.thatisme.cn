@@ -18,6 +18,8 @@ public class Article implements Entity<Article> {
 
     private Title title;
 
+    private Overview overview;
+
     private ArticleContent content;
 
     private List<Label> labels;
